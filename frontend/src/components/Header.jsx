@@ -15,6 +15,7 @@ const Header = () => {
   const cartCount = getCartCount();
 
   const scrollToSection = (sectionId) => {
+    // Check if we're on home page
     if (window.location.pathname !== '/') {
       navigate('/', { state: { scrollTo: sectionId } });
     } else {
@@ -41,6 +42,7 @@ const Header = () => {
             <span className="logo-tagline">Built by Discipline</span>
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="desktop-nav">
             <Link to="/products" className="nav-link">
               Products
@@ -53,14 +55,17 @@ const Header = () => {
             </button>
           </nav>
 
+          {/* Cart and User Actions */}
           <div className="header-actions">
+            {/* Wishlist Icon */}
             <Link to="/wishlist" className="wishlist-icon-btn">
               <Heart size={22} strokeWidth={2} />
               {wishlistCount > 0 && (
-                <span className="cart-badge">{wishlistCount}</span>
+                <span className="wishlist-badge">{wishlistCount}</span>
               )}
             </Link>
 
+            {/* Cart Icon */}
             <Link to="/cart" className="cart-icon-btn">
               <ShoppingCart size={22} strokeWidth={2} />
               {cartCount > 0 && (
@@ -68,6 +73,7 @@ const Header = () => {
               )}
             </Link>
 
+            {/* User Menu */}
             <div className="user-menu-container">
               <button 
                 className="user-icon-btn"
@@ -85,6 +91,9 @@ const Header = () => {
                       </Link>
                       <Link to="/account/orders" className="dropdown-item" onClick={() => setIsUserMenuOpen(false)}>
                         Orders
+                      </Link>
+                      <Link to="/account/credit" className="dropdown-item" onClick={() => setIsUserMenuOpen(false)}>
+                        RAZE Credit
                       </Link>
                       {user?.is_admin && (
                         <Link to="/admin" className="dropdown-item admin-link" onClick={() => setIsUserMenuOpen(false)}>
@@ -109,6 +118,7 @@ const Header = () => {
               )}
             </div>
 
+            {/* Mobile Menu Toggle */}
             <button 
               className="mobile-menu-toggle"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -119,6 +129,7 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="mobile-nav">
             <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>
