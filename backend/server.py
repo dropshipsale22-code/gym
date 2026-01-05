@@ -1042,7 +1042,8 @@ async def exchange_session(request: Request, response: Response):
             email=new_user.email,
             name=new_user.name,
             discount_code=unique_code,
-            signup_method="google"
+            signup_method="google",
+            gymnastics_type=new_user.gymnastics_type
         ))
     
     # Create session
