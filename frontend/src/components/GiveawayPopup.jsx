@@ -104,9 +104,12 @@ const GiveawayPopup = () => {
         {!isSubmitted ? (
           <div className="giveaway-content">
             <div className="giveaway-icon">🎁</div>
-            <h2 className="giveaway-title">WIN A FREE RAZE PERFORMANCE SET</h2>
+            <h2 className="giveaway-title">
+              WIN A FREE RAZE PERFORMANCE SET<br/>
+              <span className="giveaway-highlight">(Shirt + Shorts)</span> OF YOUR CHOICE
+            </h2>
             <p className="giveaway-subtitle">
-              Enter for a chance to win a complete performance set of your choice (shirt + shorts)
+              Enter for a chance to win a complete performance set
             </p>
 
             <form onSubmit={handleSubmit} className="giveaway-form">
