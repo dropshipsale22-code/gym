@@ -890,7 +890,8 @@ async def register(user_data: UserRegister, response: Response):
         email=user.email,
         name=user.name,
         discount_code=unique_code,
-        signup_method="email"
+        signup_method="email",
+        gymnastics_type=user.gymnastics_type
     ))
     
     # Create session
