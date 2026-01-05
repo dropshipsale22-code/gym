@@ -11,10 +11,10 @@ export const brandContent = {
 export const pricing = {
   shirt: 45,
   shorts: 55,
-  trainingSetBundle: 69,
+  trainingSetBundle: 69, // Shirt + Shorts bundle price
   discounts: {
-    twoShirts: 0.20,
-    threeShirts: 0.35,
+    twoShirts: 0.20,    // 20% off when buying 2 shirts
+    threeShirts: 0.35,  // 35% off when buying 3+ shirts
   }
 };
 
@@ -23,7 +23,9 @@ export const heroProduct = {
   id: 1,
   name: "Performance T-Shirt",
   color: "Black / Cyan",
+  // Front view - clean transparent PNG
   image: "https://customer-assets.emergentagent.com/job_50f93784-f8d0-443f-a597-de8e9d961d04/artifacts/drkvr2gi_3.png",
+  // Back view - cyan logo with "Built by Discipline" design
   backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/uut87a31_dsw1.png"
 };
 
@@ -91,7 +93,7 @@ export const shirts = [
   }
 ];
 
-// Shorts variants
+// Shorts variants (2 styles with Men's/Women's option)
 export const shorts = [
   {
     id: 5,
@@ -129,11 +131,14 @@ export const shorts = [
   }
 ];
 
+// For backwards compatibility
 export const mensShorts = shorts;
 export const womensShorts = shorts;
 
+// Combined products array for compatibility
 export const products = [...shirts, ...shorts];
 
+// Bundle configuration
 export const bundles = [
   {
     id: "training-set",
@@ -141,7 +146,7 @@ export const bundles = [
     description: "Shirt + Shorts — designed to work together",
     bundlePrice: 69,
     originalBundlePrice: 100,
-    savings: 31,
+    savings: 31, // $45 + $55 = $100, bundle = $69
     savingsText: "Save $31"
   }
 ];
