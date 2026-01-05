@@ -398,7 +398,7 @@ def verify_password(password: str, password_hash: str) -> bool:
     except:
         return False
 
-async def send_n8n_signup_webhook(email: str, name: str, discount_code: str, signup_method: str):
+async def send_n8n_signup_webhook(email: str, name: str, discount_code: str, signup_method: str, gymnastics_type: str = None):
     """Send webhook to n8n when a user signs up"""
     try:
         payload = {
@@ -406,6 +406,7 @@ async def send_n8n_signup_webhook(email: str, name: str, discount_code: str, sig
             "name": name,
             "discount_code": discount_code,
             "signup_method": signup_method,
+            "gymnastics_type": gymnastics_type or "other",
             "event_type": "account_signup",
             "timestamp": datetime.now(timezone.utc).isoformat()
         }
