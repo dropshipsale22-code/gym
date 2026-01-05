@@ -138,13 +138,13 @@ const Register = () => {
                 className="form-input form-select"
               >
                 <option value="">Select...</option>
-                <option value="mens">Men's Gymnastics</option>
-                <option value="womens">Women's Gymnastics</option>
-                <option value="none">None</option>
+                <option value="mag">Men's Artistic Gymnastics (MAG)</option>
+                <option value="wag">Women's Artistic Gymnastics (WAG)</option>
+                <option value="other">Both / Other</option>
               </select>
             </div>
 
-            {formData.gymnastics_type === 'none' && (
+            {formData.gymnastics_type === 'other' && (
               <div className="form-field">
                 <label htmlFor="gender" className="form-label">Gender</label>
                 <select
