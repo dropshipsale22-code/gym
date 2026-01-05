@@ -1514,7 +1514,13 @@ body {
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 10px 0;
-  line-height: 1.2;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.giveaway-highlight {
+  color: #10B981;
+  font-weight: 700;
 }
 
 .giveaway-subtitle {
