@@ -1,75 +1,52 @@
-import React from 'react';
-import { products } from '../data/mock';
-import { Link } from 'react-router-dom';
-import { Lock, Star, Heart } from 'lucide-react';
-import { useWishlist } from '../context/WishlistContext';
+import React, { useState, useEffect } from 'react';
+import { products } from '../data/products';
+import ProductCard from '../components/ProductCard';
+import ProductModal from '../components/ProductModal';
 
 const Products = () => {
-  const { isInWishlist, toggleWishlist } = useWishlist();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleWishlistToggle = (e, product) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleWishlist({
-      id: product.id,
-      name: product.name,
-      variant: product.variant,
-      price: product.price,
-      image: product.image,
-      category: product.category
-    });
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
   };
 
   return (
     <div className="products-page">
       <div className="container">
-        <div className="section-header">
-          <h1 className="section-title">All Products</h1>
-          <p className="section-subtitle">Performance gear built for discipline</p>
+        <div className="products-header">
+          <h1 className="products-title">The Collection</h1>
+          <p className="products-subtitle">Performance pieces built for discipline</p>
         </div>
 
         <div className="products-grid-page">
-          {products.map((product, index) => (
-            <div key={product.id} className="product-card">
-              {index === 0 && (
-                <div className="popular-badge">
-                  <Star size={12} fill="currentColor" /> Most Popular
-                </div>
-              )}
-              
-              <button 
-                className={`wishlist-heart ${isInWishlist(product.id, product.variant) ? 'active' : ''}`}
-                onClick={(e) => handleWishlistToggle(e, product)}
-              >
-                <Heart size={18} fill={isInWishlist(product.id, product.variant) ? 'currentColor' : 'none'} />
-              </button>
-              
-              <div className="product-image-wrapper">
-                <img 
-                  src={product.image} 
-                  alt={`${product.name} - ${product.variant}`}
-                  className="product-image"
-                />
-              </div>
-              
-              <div className="product-info">
-                <div className="product-name">{product.name}</div>
-                <div className="product-variant">{product.variant}</div>
-                <div className="product-price-row">
-                  {product.originalPrice && (
-                    <span className="product-original-price">${product.originalPrice}</span>
-                  )}
-                  <span className="product-price">${product.price}</span>
-                </div>
-                
-                <button className="btn-add-to-cart waitlist-btn">
-                  <Lock size={16} /> Join Waitlist
-                </button>
-              </div>
-            </div>
+          {products.map((product) => (
+            <ProductCard 
+              key={product.id} 
+              product={product}
+              onClick={handleProductClick}
+            />
           ))}
         </div>
       </div>
+
+      {/* Product Modal */}
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        product={selectedProduct}
+      />
     </div>
   );
 };
